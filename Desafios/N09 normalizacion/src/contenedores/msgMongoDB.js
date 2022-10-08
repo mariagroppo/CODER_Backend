@@ -21,7 +21,7 @@ class MessageMongoDB {
 
     save = async (newMessage) => {
         const newMess = new Message(newMessage);
-        console.log(newMess);
+        /* console.log(newMess); */
         try {
             await newMess.save();
         } catch (error) {

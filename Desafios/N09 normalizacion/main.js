@@ -53,24 +53,19 @@ io.on('connection', async socket => {
     })
 
     // carga inicial de mensajes
-    /* socket.emit('mensajes', await listarMensajesNormalizados()); */
+    socket.emit('mensajes', await listarMensajesNormalizados());
 
     // actualizacion de mensajes
     socket.on('nuevoMensaje', async mensaje => {
         await msgsMongo.save(mensaje)
-        console.log(await listarMensajesNormalizados());
+        /* console.log(await listarMensajesNormalizados()); */
         io.sockets.emit('mensajes', await listarMensajesNormalizados());
     })
 });
 
 async function listarMensajesNormalizados() {
-    const mensajes = await msgsMongo.getAll();
-    /* console.log(mensajes); */
-    const normalizados = normalize(mensajes, [schemaMensaje]);
-    /* console.log("NORMALIZADOS --------------------------------------------");
-    console.log(normalizados); */
+    const normalizados = normalize(await msgsMongo.getAll(), [schemaMensaje]);
     return normalizados
-    /* return mensajes */
 }
 
 //--------------------------------------------

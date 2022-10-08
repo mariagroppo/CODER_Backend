@@ -78,45 +78,45 @@ formChat.addEventListener('submit', e => {
     inputMensaje.focus()
 })
 
-socket.on('mensajes', mensajesN => {
-    console.log("NORMALIZADOS --------------------------------------------");
-    console.log(mensajesN);
-    /* let mensajesNsize = JSON.stringify(mensajesN).length
-    console.log(mensajesN, mensajesNsize); */
+socket.on('mensajes', async(mensajesN) => {
+    // console.log("NORMALIZADOS --------------------------------------------");
+    // console.log(mensajesN);
+    let mensajesNsize = JSON.stringify(mensajesN).length
+    // console.log(mensajesN, mensajesNsize);
     
-    let mensajesD = desnormalizarMensajes(mensajesN);
-    console.log("DESNORMALIZADOS --------------------------------------------");
-    console.log(mensajesD);
-    /* let mensajesDsize = JSON.stringify(mensajesD).length
-    console.log(mensajesD, mensajesDsize);
+    const mensajesD = desnormalizarMensajes(mensajesN);
+    // console.log("DESNORMALIZADOS --------------------------------------------");
+    // console.log(mensajesD);
+    let mensajesDsize = JSON.stringify(mensajesD).length
+    // console.log(mensajesD, mensajesDsize);
 
     let porcentajeC = parseInt((mensajesNsize * 100) / mensajesDsize)
-    console.log(`Porcentaje de compresión ${porcentajeC}%`) */
-    /* document.getElementById('compresion-info').innerText = porcentajeC */
+    // console.log(`Porcentaje de compresión ${porcentajeC}%`)
+    document.getElementById('compresion-info').innerText = porcentajeC;
 
     /* console.log(mensajesD.mensajes); */
     
-    mensajesD.mensajes.forEach(message => {
+    await mensajesD.forEach(message => {
         message = `
         <li>
             <b style="color:blue;">${message.author.clientMail}</b>
             [<span style="color:brown;">${message.dateText}</span>] :
             <i style="color:green;">${message.text}</i>
-            <img width="50" src="${message.author.avatar}" alt=" ">
+            <img width="50" src="${message.author.avatar}" alt="">
         </li>
         `;
-        /* messagesContainer.innerHTML += message; */
+        
         document.getElementById('realTimeText').innerHTML+= message;
     })
     
 })
 
-
-function desnormalizarMensajes(mensajesN) {
+const desnormalizarMensajes = (mensajesN) => {
+    const schema = normalizr.schema;
     const schemaAuthor = new schema.Entity('authors', {}, { idAttribute: 'clientMail' });
     const schemaMensaje = new schema.Entity('mensajes', { author: schemaAuthor }, { idAttribute: '_id' })
     
-    let mesajesD = denormalize(mensajesN.result, [schemaMensaje], mensajesN.entities)
+    let mesajesD = normalizr.denormalize(mensajesN.result, [schemaMensaje], mensajesN.entities)
     return mesajesD
     
 }
