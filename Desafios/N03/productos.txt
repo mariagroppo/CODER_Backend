@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "title": "Lámina: Beso bajo la nieve",
+    "price": "$ 1500",
+    "ruta": "https://i.picsum.photos/id/1004/5616/3744.jpg?hmac=Or7EJnz-ky5bsKa9_frdDcDCR9VhCP8kMnbZV6-WOrY"
+  },
+  {
+    "id": 2,
+    "title": "Lámina: Perro con manta",
+    "price": "$ 1000",
+    "ruta": "https://i.picsum.photos/id/1004/5616/3744.jpg?hmac=Or7EJnz-ky5bsKa9_frdDcDCR9VhCP8kMnbZV6-WOrY"
+  },
+  {
+    "id": 3,
+    "title": "Lámina: Piano en blanco y negro",
+    "price": "$ 2000",
+    "ruta": "https://i.picsum.photos/id/1082/5416/3611.jpg?hmac=GrASx5oGYbTwT4xyJDYkurgXFFfgj37WHvaJNe8Sr1E"
+  }
+  
+]

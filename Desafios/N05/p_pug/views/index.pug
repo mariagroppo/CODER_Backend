@@ -1,0 +1,29 @@
+extends formulario
+
+block index 
+    
+    div(class="container-fluid bg-warning")
+        h4(class="")="Lista de productos"
+                
+        if productsExists 
+            div(class="container-fluid")
+                table(class="table table-light")
+                    tr(class="table-primary text-center")
+                        th='ID'
+                        th='Nombre'
+                        th='Precio'
+                        th='Imagen'
+                    tr
+                    each producto in prods
+                        tr(class="text-center align-middle")
+                            td=producto.id
+                            td=producto.title
+                            td=producto.price
+                            td
+                                img(class="rounded mx-auto d-block img-thumbnail" src=producto.ruta)
+                           
+        else
+            div(class="container-fluid")
+                h2(class="alert alert-danger")='No se encontraron productos'
+
+        

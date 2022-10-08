@@ -1,0 +1,121 @@
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col border border-dark mx-1 filaDeTabla">
+                <h4 class="my-2 fw-bold text-center">Ingrese un producto nuevo</h4>
+                <form class="m-1" id="formNewProduct" >
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="price" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ruta" class="form-label">URL Imagen</label>
+                        <input type="text" class="form-control" name="ruta" id="ruta">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning my-2">Enviar</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <h4 class="p-3 fw-bold tipografia">Lista de productos</h4>
+
+        {{#if productsExists}}
+            <div class="container-fluid tipografia">
+                <table class="table filaDeTabla">
+                    <thead class="encabezadoDeTabla">
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Nombre del producto</th>
+                            <th>Imagen</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="table-products">
+                    {{#each prods}}
+                        <tr class="text-center align-middle">
+                            <td>
+                                {{this.id}}
+                            </td>
+                            <td>
+                                {{this.title}}
+                            </td>
+                            <td>
+                                <img class="rounded mx-auto d-block imagenProducto" src={{this.thumbnail}} alt={{this.title}}>
+                            </td>
+                            <td>
+                                {{this.price}}
+                            </td>
+                            
+                        </tr>
+                    {{/each}}
+                    </tbody>  
+                </table>
+            </div>
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">No se encontraron productos</h4>
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="container-fluid my-5 p-3 bg-warning">
+        <h1 class="m-3">Centro de mensajes</h1>
+
+
+        <div class="container-fluid text-center">
+        <div class="row container-fluid">
+            <div class="col container-fluid">
+                
+                <form id="formChat" class="m-1">
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="email" id="clientMail" placeholder="Ingresa su correo aqui...">
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="text" id="clientName" placeholder="Ingresa su nombre aqui..." value="Maria">
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="text" id="clientSurname" placeholder="Ingresa su apellido aqui..." value="Groppo">
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="number" id="clientAge" placeholder="Ingresa su edad aqui..." value="36">
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="text" id="clientAlias" placeholder="Ingresa su alias aqui..." value="Mey">
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-2 form-control m-1" type="text" id="clientAvatar" placeholder="Ingresa la URL de su avatar aqui..." value="ruta">
+                    </div>
+                    
+                    
+                    {{!-- <form id="formChat" class="m-1">
+                        <div class="form-group"> --}}
+                            <div class="mb-3">
+                                <input class="p-2 form-control m-1" type="text" id="inputText" placeholder="Ingresa su mensaje aqui...">
+                            </div>
+                            <button type="submit" class="p-2 container-fluid m-1" id="btnEnviar">Enviar</button>
+                       {{!--  </div> --}}
+                    </form>
+                
+
+                
+            </div>
+            <div class="col-6">
+                <div class="row" id="cuadroDeChat">
+                    <div class="col bg-light" id="realTimeText"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+</main>

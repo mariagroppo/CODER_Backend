@@ -1,0 +1,9 @@
+PUG: Me resulto muy facil de usar, pero incomodo al momento de cargar por ejemplo el formulario de
+bootstrap ya que tuve que modificar el codigo (eliminar <>, etiquetas, etc.).
+
+EJS: Fue más dificl de utilizar ya que me costo ubicar los <%. Por otra parte, fue más práctico a la
+hora de pegar el códgo de bootstrap.
+
+HANDLEBARS: Muy similar a EJS, también tuve dificultades con la ubicación de las llaves y el uso en general.
+
+Por lo tanto, para mis proyectos usaría EJS o Handlebars.

@@ -1,0 +1,113 @@
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col border border-dark mx-1 bg-danger">
+                <h4 class="my-2  text-center">Ingrese un producto nuevo</h4>
+                <form class="m-1" onsubmit="return addProduct()" id="formNewProduct" >
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="price" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ruta" class="form-label">URL Imagen</label>
+                        <input type="text" class="form-control" name="ruta" id="ruta">
+                    </div>
+                    <button type="submit" class="btn btn-warning my-2" id="btnSend">Enviar</button>
+                    
+                </form>
+            </div>
+
+            {{!-- <div class="col border border-dark mx-1 bg-danger">
+                <h4 class="my-2  text-center">Ingrese ID del producto que desea eliminar</h4>
+                <form class="m-1" id="formDeleteProduct">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="number" class="form-control" name="idDelete" id="idDelete">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning my-2">Eliminar</button>
+                </form>
+            </div> --}}
+
+            {{!-- <div class="col">
+                <div class="col border border-dark mx-1 bg-danger">
+                    <h4 class="my-2 text-center">Ingrese información a actualizar</h4>
+                    <span>Ingrese el ID y el/los campo/s a actualizar.</span>
+                    <form class="m-1" action="/api/productos/update" method="post">
+                        <div class="mb-3">
+                            <label for="id" class="form-label">ID</label>
+                            <input type="number" class="form-control" name="id" id="id">
+                        </div>
+                        <div class="container-fluid bg-secondary">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="title" id="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Precio</label>
+                                <input type="number" class="form-control" name="price" id="price">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ruta" class="form-label">URL Imagen</label>
+                                <input type="text" class="form-control" name="ruta" id="ruta">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning my-2">Actualizar</button>
+                    </form>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+
+    <div class="container-fluid my-5 p-3 bg-light">
+
+        <h4>Lista de productos</h4>
+
+        {{!-- {{#if productsExists}} --}}
+            <div class="container-fluid">
+                <table class="table table-light">
+                    <thead>
+                        <tr class="table-primary text-center">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-products"></tbody>
+                    
+                </table>
+            </div>
+        
+    </div>
+    <div class="container-fluid my-5 p-3 bg-warning">
+        <h1 class="m-3">Centro de mensajes</h1>
+
+        <div class="container-fluid">
+            <div class="row" id="cuadroDeChat">
+                <div class="col bg-light" id="realTimeText"></div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-2">
+                            <input class="p-2 form-control" type="email" id="clientMail" placeholder="Ingresa su correo aqui...">
+                        </div>
+                        <div class="col-8">
+                            <input class="p-2 form-control" type="text" id="inputText" placeholder="Ingresa texto aqui...">
+                        </div>
+                        <div class="col">
+                            <input class="p-2" type="button" id="buttonSend" value="Enviar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</main>

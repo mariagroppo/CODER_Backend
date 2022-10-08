@@ -1,0 +1,37 @@
+[
+  {
+    "userMail": "maria@gmail.com",
+    "mensaje": "hola",
+    "fecha": "8/3/2022 9:36:10 AM"
+  },
+  {
+    "userMail": "si@dff.com",
+    "mensaje": "jojo",
+    "fecha": "8/3/2022 9:36:28 AM"
+  },
+  {
+    "userMail": "tiago@gmail.com",
+    "mensaje": "¿Como andas?",
+    "fecha": "8/3/2022 12:50:44 PM"
+  },
+  {
+    "userMail": "vito@gmail.com",
+    "mensaje": "Bien, uds?",
+    "fecha": "8/3/2022 12:51:03 PM"
+  },
+  {
+    "userMail": "maria@gmail.com",
+    "mensaje": "Love you!",
+    "fecha": "8/3/2022 12:57:06 PM"
+  },
+  {
+    "userMail": "sergio@mail.com",
+    "mensaje": "Buenos dias!",
+    "fecha": "8/3/2022 1:20:17 PM"
+  },
+  {
+    "userMail": "m@gmail.com",
+    "mensaje": "hola!!!",
+    "fecha": "8/9/2022 4:10:09 PM"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "Producto 1",
+    "title": "Titutlo 1",
+    "price": "10 USD",
+    "ruta": "https://i.picsum.photos/id/29/200/300.jpg?hmac=LrtD-VNd4eRyyMbqI05Mpy4EQNgTdZkSEt5ULyXx4lw"
+  },
+  {
+    "id": "Producto 2",
+    "title": " Titulo 2",
+    "price": "20 USD",
+    "ruta": "https://i.picsum.photos/id/425/200/300.jpg?hmac=P1vjZ6T-wo-aULK7NbbLYxIaV92_0q56o0BFWcWOdmo"
+  },
+  {
+    "id": "Producto 3",
+    "title": "Titutlo 3",
+    "price": "123 USD",
+    "ruta": "https://i.picsum.photos/id/574/200/300.jpg?hmac=8A2sOGZU1xgRXI46snJ80xNY3Yx-KcLVsBG-wRchwFg"
+  }
+]

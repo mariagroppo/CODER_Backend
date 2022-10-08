@@ -1,0 +1,9 @@
+1. Crear un usuario que acceda con nombre 'encargado' y clave 'qwerty123' sólo a la base 'empresa' y tenga permisos de lectura/escritura.
+2. Acceder con ese usuario y listar de la colección clientes sólo los nombres de los mismos.
+Verificar que no pueda acceder si sus credenciales no corresponden.
+
+1. db.createUser({ user: "encargado", pwd: "qwerty123", roles: [ { role: "readWrite", db: "empresa" } ] })
+2. 
+
+mongo -u encargado -p qwerty
+use ecommerce

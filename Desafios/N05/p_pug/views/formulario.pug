@@ -1,0 +1,62 @@
+extends encabezado
+
+block partial 
+    
+    div(class="container-fluid")
+        div(class="container-fluid my-3")
+            div(class="row")
+                div(class="col border border-dark mx-1 bg-danger")
+                    h4(class="my-2")="Ingrese un producto nuevo"
+            
+                    form(class="m-1" action="/api/productos" method="post")
+                                            
+                        div(class="mb-3")
+                            label(for="title" class="form-label")
+                            b="Nombre"
+                            input(type="text" class="form-control" name="title" id="title")
+                        div(class="mb-3")
+                            label(for="price" class="form-label")
+                            b="Precio"
+                            input(type="number" class="form-control" name="price" id="price")
+                        div(class="mb-3")
+                            label(for="ruta" class="form-label")
+                            b="URL Imagen"
+                            input(type="text" class="form-control" name="ruta" id="ruta")
+                    
+                        button(type="submit" class="btn btn-warning my-2")="Enviar"
+                div(class="col border border-dark mx-1 bg-danger")
+                    h4(class="my-2")="Ingrese ID del producto que desea eliminar"
+        
+                    form(class="m-1" action="/api/productos/delete" method="post")
+                                            
+                        div(class="mb-3")
+                            label(for="id" class="form-label")
+                            b="ID"
+                            input(type="number" class="form-control" name="id" id="id")
+                        
+                        button(type="submit" class="btn btn-warning my-2")="Eliminar"
+                div(class="col border border-dark mx-1 bg-danger")
+                    h4(class="my-2")="Ingrese información a actualizar"
+                    span="Ingrese el ID y el/los campo/s a actualizar."
+                    form(class="m-1" action="/api/productos/update" method="post")
+                        div(class="mb-3")
+                            label(for="id" class="form-label")
+                            b="ID del producto"
+                            input(type="number" class="form-control" name="id" id="id")
+                        div(class="container-fluid bg-secondary")
+                            div(class="mb-3")
+                                label(for="title" class="form-label")
+                                b="Nuevo nombre"
+                                input(type="text" class="form-control" name="title" id="title")
+                            div(class="mb-3")
+                                label(for="price" class="form-label")
+                                b="Nuevo precio"
+                                input(type="number" class="form-control" name="price" id="price")
+                            div(class="mb-3")
+                                label(for="ruta" class="form-label")
+                                b="Nueva URL Imagen"
+                                input(type="text" class="form-control" name="ruta" id="ruta")
+                    
+                        button(type="submit" class="btn btn-warning my-2")="Actualizar"     
+
+    block index

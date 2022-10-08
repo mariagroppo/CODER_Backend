@@ -1,0 +1,40 @@
+#cuadroDeChat {
+    height: 50vh;
+    text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:#fff;
+    border:1px solid #ACD8F0;
+    overflow:auto; }
+
+.text-brown {
+    color: brown;
+}
+
+.tipografia {
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+}
+
+.fondoGeneral {
+    background-color: rgb(148, 180, 159);
+}
+
+.barraNavegacion {
+    background-color: rgb(206, 229, 208);
+
+}
+
+.encabezadoDeTabla {
+    background-color: rgb(236, 179, 144);
+}
+
+.filaDeTabla{
+    background-color: rgb(252, 248, 232);
+}
+
+.imagenProducto {
+    max-width: auto;
+    max-height: 100px;
+}
