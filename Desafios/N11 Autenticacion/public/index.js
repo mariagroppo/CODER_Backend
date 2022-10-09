@@ -1,102 +1,101 @@
-/* Desde el cliente */
-import { desnormalizar } from "../database/mongoDB/denormalize";
-
-/* CHAT ------------------------------------------------------------------------------------------- */
 const socket = io.connect();
-const inputText = document.getElementById('inputText');
-const buttonSend = document.getElementById('buttonSend');
 
-const clientMail = document.getElementById('clientMail');
-const clientName = document.getElementById('clientName');
-const clientSurname = document.getElementById('clientSurname');
-const clientAge = document.getElementById('clientAge');
-const clientAlias = document.getElementById('clientAlias');
-/* const clientAvatar = faker.image.avatar() */
+//------------------------------------------------------------------------------------
 
-buttonSend.addEventListener('click', () => {
-    let registroFecha = new Date().toLocaleDateString('en-US');
-    let registroHora = new Date().toLocaleTimeString('en-US');
-    let registro = registroFecha + " " + registroHora;
-    socket.emit('saveMessage', {
-        author: {id: clientMail.value, clientName: clientName.value, clientSurname: clientSurname.value, clientAge: clientAge.value, clientAlias: clientAlias.value},
-        text: inputText.value,
-        dateText: registro
-    });
-    /* inputText.value="";
-    clientMail.value="";
-    clientName.value="";
-    clientSurname.value="";
-    clientAge.value="";
-    clientAlias.value=""; */
-    
-})
-
-socket.on('currentChat', mess2 => {
-    
-    console.log("NORMALIZADO")
-    let mensajesDesnormalizados = desnormalizar(mess2);
-    console.log("DESNORMALIZADO: " + mensajesDesnormalizados);
-    realTimeText.innerText="";
-    mensajesDesnormalizados.forEach(message => {
-        realTimeText.innerHTML += 
-        `<div class="container-fluid">
-            <div class="row">
-                <div class="col-3">
-                    <span class="fw-bold text-primary">${message.author.clientAlias}</span> <span class="text-brown">[${message.dateText}]</span>
-                </div>
-                <div class="col">
-                    <span class="fst-italic text-success">${message.text}</span>
-                </div>
-            </div>
-        </div>`
-    });
-})
-
-
-/* FORMULARIO DE PRODUCTO NUEVO  -------------------------------------------------------------------------- */
-
-function addProduct(){
-    let product = {
-        title: document.getElementById('title').value, 
-        price: document.getElementById('price').value,
-        ruta: document.getElementById('ruta').value
+const formNewProduct = document.getElementById('formNewProduct')
+formNewProduct.addEventListener('submit', e => {
+    e.preventDefault()
+    const producto = {
+        title: formNewProduct[0].value,
+        price: formNewProduct[1].value,
+        thumbnail: formNewProduct[2].value
     }
-    socket.emit('newProduct', product)
-    document.getElementById('title').value = ''
-    document.getElementById('price').value = ''
-    document.getElementById('ruta').value = ''
-    
-    return false;
-}
+    console.log(producto);
+    socket.emit('update', producto);
+    formNewProduct.reset()
+})
 
-socket.on('listado', listado => {
-    redirect = '/api/productos';
+socket.on('productos', listado => {
+    if (listado.length > 0) {
+        document.getElementById('table-products').innerHTML = '';
+            listado.forEach(product => {
+                document.getElementById('table-products').innerHTML += `
+                    <tr class="text-center align-middle">
+                        <td class="align-middle">${product.id}</td>
+                        <td class="align-middle">${product.title}</td>
+                        <td class="align-middle">
+                            <img class="rounded mx-auto d-block imagenProducto" src="${product.thumbnail}" alt="${product.title}">
+                        </td>
+                        <td class="align-middle">${product.price}</td>
+                    </tr>`;
+            })
+   /*  redirect = '/api/productos'; */
+    
+    }
 });
 
-/* FORMULARIO DE ELIMINAR PRODUCTO   -------------------------------------------------------------------------- */
 
-function deleteProduct(){
-    let deleteId = document.getElementById('deleteId').value; 
-    socket.emit('deleteId', deleteId);
-    document.getElementById('deleteId').value = ''
-        
-    return false;
-}
+//-------------------------------------------------------------------------------------
 
-/* FORMULARIO DE ACTUALIZACIÒN DE PRODUCTO   -------------------------------------------------------------------------- */
+// MENSAJES
 
-function updateProduct(){
-    let productUpdated = {
-        id: document.getElementById('updateId').value,
-        title: document.getElementById('newTitle').value,
-        ruta: document.getElementById('newRuta').value,
-        price: document.getElementById('newPrice').value
+const inputUsername = document.getElementById('clientMail')
+const inputMensaje = document.getElementById('inputText')
+const btnEnviar = document.getElementById('btnEnviar')
+
+const formChat = document.getElementById('formChat');
+
+formChat.addEventListener('submit', e => {
+    e.preventDefault()
+    let registroFecha = new Date().toLocaleDateString('en-US');
+    let registroHora = new Date().toLocaleTimeString('en-US');
+    let dateText = registroFecha + " " + registroHora;
+
+    const mensaje = {
+        author: {
+            clientMail: document.getElementById('clientMail').value,
+            clientName: document.getElementById('clientName').value,
+            clientSurname: document.getElementById('clientSurname').value,
+            clientAge: document.getElementById('clientAge').value,
+            clientAlias: document.getElementById('clientAlias').value,
+            clientAvatar: document.getElementById('clientAvatar').value
+        },
+        text: inputMensaje.value,
+        dateText: dateText
     }
-    socket.emit('productUpdated', productUpdated);
-    document.getElementById('updateId').value = '';
-    document.getElementById('newTitle').value = '';
-    document.getElementById('newRuta').value = '';
-    document.getElementById('newPrice').value = '';
+
+    socket.emit('nuevoMensaje', mensaje);
+    formChat.reset()
+    inputMensaje.focus()
+})
+
+socket.on('mensajes', async(mensajesN) => {
+    let mensajesNsize = JSON.stringify(mensajesN).length
+    const mensajesD = desnormalizarMensajes(mensajesN);
+    let mensajesDsize = JSON.stringify(mensajesD).length
+    let porcentajeC = parseInt((mensajesNsize * 100) / mensajesDsize)
+    document.getElementById('compresion-info').innerText = porcentajeC;
+    await mensajesD.forEach(message => {
+        message = `
+        <li>
+            <b style="color:blue;">${message.author.clientMail}</b>
+            [<span style="color:brown;">${message.dateText}</span>] :
+            <i style="color:green;">${message.text}</i>
+            <img width="50" src="${message.author.avatar}" alt="">
+        </li>
+        `;
         
-    return false;
+        document.getElementById('realTimeText').innerHTML+= message;
+    })
+    
+})
+
+const desnormalizarMensajes = (mensajesN) => {
+    const schema = normalizr.schema;
+    const schemaAuthor = new schema.Entity('authors', {}, { idAttribute: 'clientMail' });
+    const schemaMensaje = new schema.Entity('mensajes', { author: schemaAuthor }, { idAttribute: '_id' })
+    
+    let mesajesD = normalizr.denormalize(mensajesN.result, [schemaMensaje], mensajesN.entities)
+    return mesajesD
+    
 }

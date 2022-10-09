@@ -1,17 +1,24 @@
 import express from 'express';
 const router = express.Router();
 import { randomData } from "../database/faker.js";
-import fs from 'fs';
 import passport from 'passport';
 import "../passport/local-auth.js"
+
+import ProductMongoDB from "../database/mongoDB/prodsMongoDB.js";
+export const prodsMongo = new ProductMongoDB();
+
+import MessageMongoDB from "../database/mongoDB/msgMongoDB.js";
+import { userMongo } from '../database/mongoDB/userMongoDB.js';
+export const msgsMongo = new MessageMongoDB();
 
 /* middlewares -----------------------------------------------------------------------------------------] */
 
 /* revisa si esta autenticado */
 function requireAuthentication (req, res, next) {
-    console.log(req.session.passport.user)
+    /* console.log("AUTENTICACION ------------------------------------------------")
+    console.log(req.session.passport) */
     let a = req.isAuthenticated();
-    console.log(a);
+    /* console.log(a); */
     if (req.isAuthenticated()) {
         next()
     } else {
@@ -19,20 +26,11 @@ function requireAuthentication (req, res, next) {
     }
 }
 
-/* function roleAdmin(req, res, next) {
-    console.log('>', req.user)
-    if (req.isAuthenticated() && req.user.rol == 'admin') {
-        next();
-    } else {
-        res.status(401).send('no autorizado')
-    }
-} */
-
 /* PRODUCTOS ----------------------------------------------------------------------------------------- */
 router.get('/productos', requireAuthentication, async (req, res) => {
-    let userName = req.session.passport.user.userEmail;;
-    /* let listado = await productMongo.getAll(); */
-    let listado = JSON.parse(fs.readFileSync('./database/data/productos.txt', 'utf-8'));
+    let idUser = req.session.passport.user;
+    let userName = await userMongo.showUserName(idUser);
+    let listado = await prodsMongo.getAll();
     if (listado.length>0) {
         res.render('../views/main.hbs', { prods: listado, productsExists: true, user: userName, userStatus: true})
     } else {
@@ -41,8 +39,9 @@ router.get('/productos', requireAuthentication, async (req, res) => {
 })
 
 /* FAKER ----------------------------------------------------------------------------------------- */
-router.get('/productos-test', requireAuthentication, (req, res) => {
-    let userName = req.session.passport.user.userEmail;
+router.get('/productos-test', requireAuthentication, async (req, res) => {
+    let idUser = req.session.passport.user;
+    let userName = await userMongo.showUserName(idUser);
     res.render('../views/main.hbs', { prods: randomData, productsExists: true, user: userName , userStatus: true})
 })
 
@@ -60,11 +59,6 @@ router.post('/login', passport.authenticate('login', {
     passReqToCallback: true
 }))
 
-/* router.post('/login', passport.authenticate('login', { successRedirect: '/api/productos', failureRedirect: '/api/errorLogin' }), (req, res) => {
-    console.log('login', req.body);
-    res.send(req.body);
-}); */
-
 router.get('/errorLogin', (req, res) => {
     res.render('../views/partials/errorLogin.hbs', { userStatus: false})
 })
@@ -80,18 +74,16 @@ router.post('/signup', passport.authenticate('signup', {
     passReqToCallback: true
 }));
 
-/* router.post('/signup', passport.authenticate('signup', { successRedirect: '/api/login', failureRedirect: '/api/errorSignUp' }), (req, res) => {
-    res.send(req.body);
-}); */
-
 router.get('/errorSignUp', (req, res) => {
     res.render('../views/partials/errorSignUp.hbs', { userStatus: false})
 })
 
 /* LOG OUT  ----------------------------------------------------------------------------------------- */
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res) => {
+    let idUser = req.session.passport.user;
+    let userName = await userMongo.showUserName(idUser);
     try {
-        console.log("Hasta luego " + req.session.name);
+        console.log("Hasta luego " + userName);
         req.session.destroy();
         res.render('../views/main.hbs', { userStatus: false})
     } catch (error) {
@@ -99,5 +91,23 @@ router.get('/logout', (req, res) => {
 	}
     
 });
+
+/* import dotenv from "dotenv";
+dotenv.config(); */
+
+router.get('/info', (req, res) => {
+    /* const data = {
+        directorioActual: process.cwd(),
+        idProceso: process.pid,
+        vNode: process.version,
+        rutaEjecutable: process.execPath,
+        sistemaOperativo: process.platform,
+        memoria: JSON.stringify(process.memoryUsage().rss, null, 2),
+    }
+ */
+    const data = []
+    res.render('../views/partials/info.hbs', { userStatus: true});
+});
+
 
 export default router;

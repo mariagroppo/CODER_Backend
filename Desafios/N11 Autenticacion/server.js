@@ -1,41 +1,30 @@
 // Importación ------------------------------------------------------------------------------------------------------
 import express from 'express';
 import { Server } from 'socket.io';
-import { databaseMySql, dbSqlite3 } from "./database/database.js";
-import normalizar from "./database/mongoDB/normalize.js";
 import passport from 'passport';
 import flash from 'connect-flash';
-
-/* CLASSES ------------------------------------------------------------------------------------------------- */
-import ArchivoMensajes from './database/daos/saveMessage.js';
-let listadoMensajes = new ArchivoMensajes('./data/mensajes.txt', dbSqlite3, 'messages');
-
-import ArchivoProductos from './database/daos/saveProducts.js';
-export let listadoProductos = new ArchivoProductos('./data/productos.txt', databaseMySql, 'productsTable');
+import {prodsMongo, msgsMongo} from "./routes/recursos.js";
 
 /* MONGO DATABASE --------------------------------------------------------------------------------------------  */
 import { connection } from "./database/mongoDB/config.js";
 connection();
 
-import MessageMongoDB from "./database/mongoDB/msgMongoDB.js";
-const msgMongo = new MessageMongoDB();
-
+/* ROUTES --------------------------------------------------------------------------------------------  */
 import router from './routes/recursos.js';
 export const app = express();
-
 
 /* SESSION --------------------------------------------------------------------------------------- */
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 /* La constante advancedOptions se utiliza para las opciones avanzadas de la conexión a la BD */
-/* const advancedOptions = { userNewUrlParser: true, useUnifiedTopology: true}; */
+const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true};
 
 app.use(cookieParser());
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/desafio11',
-        /* mongoOptions: advancedOptions, */
+        mongoUrl: 'mongodb+srv://mariagroppo:ctNZIOUDTyQzX680@cluster0.dud6uob.mongodb.net/?retryWrites=true&w=majority',
+        mongoOptions: advancedOptions,
         ttl: 60,
         collectionName: 'sessions'
     }),
@@ -45,21 +34,6 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 100000 }
 }));
-
-/* Middleware que verifica que el usuario esté autenticado */ 
-app.use ((req, res, next)=> {
-    req.isAuthenticated = () => {
-        if (req.session.name) {
-            return true
-        } else {
-            return false
-        }
-    }
-    req.logout = done => {
-        req.session.destroy(done)
-    }
-    next()
-})
 
 app.use(express.static('./public'));
 /* middleware: method inbuilt in express to recognize the incoming Request Object as a JSON Object. */
@@ -100,42 +74,40 @@ app.engine('hbs',engine( {
     partialsDir: './views/partials' // Ruta de las plantillas parciales
 } ));
 
-/* SOCKETS ----------------------------------------------------------------------------------------- */
-let messages = await msgMongo.getAll(); 
+//--------------------------------------------
+// NORMALIZACIÓN DE MENSAJES
 
-io.on('connection', function(socket) {
-    console.log('Un cliente se ha conectado');
-    
-    /* socket.emit('listado', listado); */
-    socket.emit('currentChat', messages);
+import { normalize, schema, } from 'normalizr'
+const schemaAuthor = new schema.Entity('authors', {}, { idAttribute: 'clientMail' });
+const schemaMensaje = new schema.Entity('mensajes', { author: schemaAuthor }, { idAttribute: '_id' })
 
-    socket.on('saveMessage', async (message) => {
-        msgMongo.save(message);
-        listadoMensajes.save(message);
-        messages.push(message);
-        let mess= await msgMongo.getAll();
-        /* console.log("MESS ---------------------------------------------------------------------------------------")
-        console.log(mess); */
-        let mess2 = await normalizar(mess);
-        console.log("MESS2 ---------------------------------------------------------------------------------------")
-        console.log(mess2);
-        io.sockets.emit('currentChat', mess2);
+//--------------------------------------------
+// configuro el socket
+
+io.on('connection', async socket => {
+    console.log('Nuevo cliente conectado!');
+
+    // carga inicial de productos
+    socket.emit('productos', await prodsMongo.getAll());
+
+    // actualizacion de productos
+    socket.on('update', async producto => {
+        await prodsMongo.save(producto);
+        io.sockets.emit('productos', await prodsMongo.getAll());
     })
 
-    socket.on('newProduct', newProduct => {
-        listadoProductos.save(newProduct);
-        io.sockets.emit('listado', listado);        
-    })
+    // carga inicial de mensajes
+    socket.emit('mensajes', await listarMensajesNormalizados());
 
-    socket.on('deleteId', deleteId => {
-      listadoProductos.deleteById(deleteId);
-      io.sockets.emit('listado', listado);        
+    // actualizacion de mensajes
+    socket.on('nuevoMensaje', async mensaje => {
+        await msgsMongo.save(mensaje)
+        /* console.log(await listarMensajesNormalizados()); */
+        io.sockets.emit('mensajes', await listarMensajesNormalizados());
     })
-
-    socket.on('productUpdated', productUpdated => {
-      listadoProductos.updateProduct(productUpdated);
-      io.sockets.emit('listado', listado);        
-    })
-
-    
 });
+
+async function listarMensajesNormalizados() {
+    const normalizados = normalize(await msgsMongo.getAll(), [schemaMensaje]);
+    return normalizados
+}

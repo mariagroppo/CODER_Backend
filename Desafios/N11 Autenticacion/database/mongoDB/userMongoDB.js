@@ -11,8 +11,8 @@ class UserMongoDB {
             for (let i = 0; i < contenido.length; i++) {
                 contenido2[i]._id = contenido[i]._id.toString();
             }
-            console.log("useMongoDB -----------------------------------------------------------------------------")
-            console.log({contenido});
+            /* console.log("useMongoDB -----------------------------------------------------------------------------")
+            console.log({contenido}); */
             return contenido2;
             
         } catch (error) {
@@ -42,6 +42,7 @@ class UserMongoDB {
         try {
             /* Si el usuario existe devuelve true */
             let usuarios = await this.getAll();
+            // console.log(await this.getAll())
             const usuario = usuarios.find(u => u.email === email);
             /* console.log("verify mail - useMongoDB -------------------------------------------------------")
             console.log({usuario}); */
@@ -55,31 +56,25 @@ class UserMongoDB {
         }
     }
     
-    updateId = async () => {
-        try {
-            const contenido = await User.find().lean()
-            let contenido2 = contenido;
-            for (let i = 0; i < contenido.length; i++) {
-                contenido2[i]._id = contenido[i]._id.toString();
-            }
-            User.remove({});
-
-            for (let i = 0; i < contenido2.length; i++) {
-                let user = new User(contenido2[i]);
-                await user.save()
-            }
-            
-            
-        } catch (error) {
-            console.log('Error de lectura!', error);
-            
-        }
-    }
-    
     showUser = async (email) => {
         try {
             let user = await User.findOne({email: email});
             return user;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+    showUserName = async (code) => {
+        try {
+            let users = await this.getAll();
+            const user = users.find(u => u._id === code);
+            if (user) {
+                return user.userName
+            } else {
+                return null;
+            }
         } catch (error) {
             console.log(error);
             return null;

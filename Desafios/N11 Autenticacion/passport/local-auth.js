@@ -36,17 +36,17 @@ passport.use('signup', new Strategy({usernameField: 'userEmail', passwordField: 
 /* Se guarda el usuario internamente en el navegador para que no tenga que autenticarse constantemente */
 /* Cada vez que el usuario va a otra página devuelve el id */
 passport.serializeUser((user, done) => {
-    console.log("serializa")
-    console.log(user._id.toString());
+    /* console.log("serializa")
+    console.log(user._id.toString()); */
     done(null, user._id.toString());
 });
 
 /* Recibe id almacenado y hace el proceso inverso */
 passport.deserializeUser(async (_id, done) => {
-    console.log("deserializa")
-    console.log(_id)
+    /* console.log("deserializa")
+    console.log(_id) */
     const user = await User.findById(_id);
-    console.log(user);
+    /* console.log(user); */
     done(null, user);
 });
 
@@ -56,10 +56,10 @@ passport.use('login', new Strategy({usernameField: 'userEmail', passwordField: '
     try {
         /* PRIMERO VERIFICO QUE EL CORREO ESTE REGISTRADO */
         if (await userMongo.verifyEmail(userEmail)) {
-            console.log("El usuario esta OK.")
+            // console.log("El usuario esta OK.")
             let user = await User.findOne({email: userEmail});
             if (user.validatePassword(inputPassword)) {
-                console.log("La pwd es correcta");
+                // console.log("La pwd es correcta");
                 return done(null, user);
             } else {
                 console.log("La pwd es incorrecta.");
