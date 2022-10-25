@@ -1,0 +1,18 @@
+2022/10/24 22:00:21 [error] 18624#9180: *1 CreateFile() "C:\nginx/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/10/24 23:14:07 [notice] 10156#912: signal process started
+2022/10/24 23:33:30 [notice] 2236#17932: signal process started
+2022/10/24 23:34:43 [notice] 15552#16908: signal process started
+2022/10/24 23:36:03 [error] 8080#11012: *1 CreateFile() "C:\Users\lucho\Desktop\CODER Backend\Ejercicios\30. Proxy Nginx\1. Balanceador de carga\nginx/../nodeServer/public/css/estilos.css" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: nginx_node, request: "GET /css/estilos.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/10/24 23:37:08 [error] 8080#11012: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: nginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8081/datos/", host: "localhost"
+2022/10/24 23:37:10 [error] 8080#11012: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: nginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8082/datos/", host: "localhost"
+2022/10/24 23:38:29 [notice] 4620#17364: signal process started
+2022/10/24 23:38:36 [error] 8080#11012: *6 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: nginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8082/datos/", host: "localhost"
+2022/10/24 23:38:38 [error] 8080#11012: *6 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: nginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8081/datos/", host: "localhost"
+2022/10/24 23:38:41 [error] 8080#11012: *6 CreateFile() "C:\Users\lucho\Desktop\CODER Backend\Ejercicios\30. Proxy Nginx\1. Balanceador de carga\nginx/../nodeServer/public/css/estilos.css" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: nginx_node, request: "GET /css/estilos.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/10/24 23:41:52 [notice] 11688#6084: signal process started
+2022/10/24 23:42:10 [error] 8080#11012: *12 CreateFile() "C:\Users\lucho\Desktop\CODER Backend\Ejercicios\30. Proxy Nginx\1. Balanceador de carga\nginx/../nodeServer/public/css/estilos.css" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: nginx_node, request: "GET /css/estilos.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/10/24 23:53:06 [error] 8080#11012: *15 CreateFile() "C:\Users\lucho\Desktop\CODER Backend\Ejercicios\30. Proxy Nginx\1. Balanceador de carga\nginx/../nodeServer/public/css/estilos.css" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: nginx_node, request: "GET /css/estilos.css HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2022/10/25 00:02:24 [notice] 1872#12420: signal process started
+2022/10/25 00:04:18 [notice] 9896#12188: signal process started
+2022/10/25 00:07:54 [notice] 5460#14960: signal process started
+2022/10/25 17:56:38 [notice] 12584#14364: signal process started

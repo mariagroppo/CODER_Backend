@@ -1,0 +1,21 @@
+CONSIGNA
+Realizar los siguientes cambios en el servidor Nginx que venimos utilizando:
+
+Volver a configurar el servidor Nginx con el puerto 80 como puerto de escucha.Derivar la información entrante en su ruta '/datos' a tres instancias Node.js escuchando en distintos 
+puertos: ej: 8081 y 8082.
+Las instancias de node responderán en esa ruta: el número de puerto de escucha, su pid y la fecha y
+hora actual, ej: 'Server en PORT(puerto) - PID(pid) - FYH(fyh)' 
+--------------------------------
+
+En principio el balanceo de carga será equitativo para las dos instancias.
+    USAR EL NGINX.EXE DE LA CARPETA CORRESPONDIENTE. SINO CERRAR OTROS.
+    Una vez que cambiamos la configuración de nginx, debemos hacer un reload.
+    Abro consola cmd.
+    En ruta de carpeta de nginx, pongo: nginx.exe -s reload
+
+Desde la consola de VSC, ejecuto pm2.
+    pm2 start server.js --name="Server1" --watch -- 8081
+    pm2 start server.js --name="Server2" --watch -- 8082
+
+Abro el navegador y pruebo:
+    localhost:8081/datos
