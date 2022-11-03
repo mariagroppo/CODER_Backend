@@ -1,0 +1,41 @@
+<div class="container-fluid my-5 p-3 bg-warning">
+    <h1 class="m-3">Login de usuario</h1>
+
+    <div class="container-fluid">
+        
+        {{#if loginUserMessage}}
+            <div class="alert alert-danger">
+                <h1>El correo con el que desea loguearse no se encuentra registrado.</h1>    
+            </div>
+        {{/if}}
+
+        {{#if loginPassMessage}}
+            <div class="alert alert-danger">
+                <h1>La contraseña ingresada es incorrecta.</h1>    
+            </div>
+        {{/if}}
+
+        <form class="row g-3" action="/api/login" method="post">
+            <div>
+                <div class="col-md-6">
+                    <label for="userEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="userEmail">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="inputPassword">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <p>¿Necesitas una cuenta? <a href="/api/signup">SignUp</a> </p>
+                <p>O vuelve al inicio. <a href="/api/productos">Inicio</a></p>
+                
+            </div>
+        </form>
+    </div>
+</div>

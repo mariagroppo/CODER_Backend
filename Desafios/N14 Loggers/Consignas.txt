@@ -1,0 +1,79 @@
+>> CONSIGNA
+A. Incorporar al proyecto de servidor de trabajo la compresión gzip.
+Verificar sobre la ruta /info con y sin compresión, la diferencia de cantidad de bytes devueltos 
+en un caso y otro.
+
+En recursos.js se agrega rua /info-compression para poder comparar la cantidad de bytes.
+nodemon server.js
+info: 4.4 kB 
+info-compression: 1.7kB
+
+----------------------------------------------------------------------------------------------------
+B. Luego implementar loggueo (con alguna librería vista en clase) que registre lo siguiente:
+- Ruta y método de todas las peticiones recibidas por el servidor (info)
+- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
+- Errores lanzados por las apis de mensajes y productos, únicamente (error)
+Considerar el siguiente criterio:
+- Loggear todos los niveles a consola (info, warning y error)
+- Registrar sólo los logs de warning a un archivo llamada warn.log
+- Enviar sólo los logs de error a un archivo llamada error.log
+
+En server.js se imlementa loggueo:
+- Ruta y método de todas las peticiones recibidas por el servidor - info (linea 65)
+- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning) (linea 73 y en recursos.js linea 153)
+- Errores lanzados por las apis de mensajes y productos, únicamente (error). 
+   Para esto agregue error del servidor.
+   
+Se verifica info por consola y en archivos.
+
+-----------------------------------------------------------------------------------------------------
+>> CONSIGNA
+ Luego, realizar el análisis completo de performance del servidor con el que venimos trabajando.
+Vamos a trabajar sobre la ruta '/info', en modo fork, agregando ó extrayendo un console.log de la
+ información colectada antes de devolverla al cliente. 
+ Además desactivaremos el child_process de la ruta '/randoms'.
+ Para ambas condiciones (con o sin console.log) en la ruta '/info' OBTENER:
+1) El perfilamiento del servidor, realizando el test con --prof de node.js. 
+Analizar los resultados obtenidos luego de procesarlos con --prof-process. 
+Utilizaremos como test de carga Artillery en línea de comandos, emulando 50 conexiones concurrentes 
+con 20 request por cada una. Extraer un reporte con los resultados en archivo de texto.
+
+node --prof server.js FORK
+
+En otra consola:
+artillery quick -c 50 -n 20 "http://localhost:8080/info" > artillery_slow.txt
+node --prof-process isolate-00000290D5596220-11468-v8.log > slow_isolate.txt
+
+Comento console.log.
+node --prof server.js FORK
+artillery quick -c 50 -n 20 "http://localhost:8080/info" > artillery_fast.txt
+node --prof-process isolate-0000024A7F042B90-14856-v8.log > fast_isolate.txt
+
+-----------------------------------------------------------------------------------------------------
+>> CONSIGNA
+Luego utilizaremos Autocannon en línea de comandos, emulando 100 conexiones concurrentes realizadas 
+en un tiempo de 20 segundos. 
+Extraer un reporte con los resultados (puede ser un print screen de la consola)
+
+node server.js
+npm test
+Imagen autocannon_test1.jpg
+
+Saco console.log:
+Imagen autocannon_test2.jpg
+
+2) El perfilamiento del servidor con el modo inspector de node.js --inspect. Revisar el tiempo de los 
+procesos menos performantes sobre el archivo fuente de inspección.
+node --inspect server.js
+chrome://inspect
+Open dedicated DevTools / Profiler / Iniciar...
+artillery quick -c 50 -n 20 "http://localhost:8080/info" > inspect_slow.txt
+
+Repito sin console:
+artillery quick -c 50 -n 20 "http://localhost:8080/info" > inspect_fast.txt
+
+3) El diagrama de flama con 0x, emulando la carga con Autocannon con los mismos parámetros anteriores.
+0x server.js
+npm test
+Ver carpeta 10636-0x
+
