@@ -45,3 +45,19 @@ El cluster será creado desde node utilizando el módulo nativo cluster.
 - Luego, modificar la configuración para que todas las consultas a /api/randoms sean redirigidas a un 
 cluster de servidores gestionado desde nginx, repartiéndolas equitativamente entre 4 instancias 
 escuchando en los puertos 8082, 8083, 8084 y 8085 respectivamente.
+
+En principio el balanceo de carga será equitativo para las dos instancias.
+    USAR EL NGINX.EXE DE LA CARPETA CORRESPONDIENTE. SINO CERRAR OTROS.
+    Una vez que cambiamos la configuración de nginx, debemos hacer un reload.
+    Abro consola cmd.
+    En ruta de carpeta de nginx, pongo: nginx.exe -s reload
+
+Desde la consola de VSC, ejecuto pm2.
+    pm2 start server.js --name="Server1" --watch -- 8081
+    pm2 start server.js --name="Server2" --watch -i 3 -- 8082
+
+IMPORTANTE: verificar que la carpeta node_modules este dentro de nodeServer.
+Y que el package.json tenga type: module.
+
+Abro el navegador y pruebo:
+    localhost:8080/randoms
