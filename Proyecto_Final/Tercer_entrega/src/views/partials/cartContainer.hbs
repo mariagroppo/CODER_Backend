@@ -1,0 +1,70 @@
+<div class="tipografia">
+    
+    <div class="container text-center fw-bold fs-3">        
+                CARRITO N°: {{carts.idCart}}
+    </div>
+
+
+    {{#if cartsExists}}
+        {{!-- <h3 class="p-3 fw-bold tipografia">PRODUCTOS</h3> --}}
+        <div class="container-fluid">
+            {{#if pExist}}
+                <table class="table filaDeTabla">
+                    <thead class="encabezadoDeTabla">
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Nombre del producto</th>
+                            <th>Descripción</th>
+                            <th>Código</th>
+                            <th>Imagen</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each carts.products}}  
+                            <tr class="text-center align-middle">
+                                <td>
+                                    {{this.id}}
+                                </td>
+                                <td>
+                                    {{this.title}}
+                                </td>
+                                <td>
+                                    {{this.description}}
+                                </td>
+                                <td>
+                                    {{this.code}}
+                                </td>
+                                <td>
+                                    <img class="rounded mx-auto d-block imagenProducto" src={{this.thumbnail}}>
+                                </td>
+                                <td>
+                                    $ {{this.price}}
+                                </td>
+                                <td>
+                                   {{this.quantity}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <div class="col">
+                    <form action="/api/cart/buy" method="post">
+                        <input type="hidden" name="id" value={{carts.idCart}}>
+                        <button type="submit" class="btn btn-success my-2">Comprar</button>
+                    </form>
+                </div>
+            {{else}}
+                <div class="container-fluid">
+                    <h4 class="alert alert-danger">No hay productos</h4>
+                </div> 
+            {{/if}}
+        </div>
+    {{else}}
+        <div class="container-fluid">
+            <h4 class="alert alert-danger">No se puede mostrar el contenido.</h4>
+        </div>
+    {{/if}}
+</div>

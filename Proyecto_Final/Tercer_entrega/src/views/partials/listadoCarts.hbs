@@ -1,0 +1,64 @@
+
+    <div>
+        <div class="container-fluid row justify-content-between">
+            <div class="col-4">
+                <h4 class="p-3 fw-bold tipografia">Lista de carritos</h4>
+            </div>
+            <div class="col-4">
+                <form class="m-1 col-4" action="/api/cart" method="post">
+                    <button type="submit" class="btn btn-light my-2">Nuevo carrito</button>
+                </form>
+            </div>
+        </div>
+
+        {{#if cartsExists}}
+            <div class="container tipografia mx-5">
+                <table class="table filaDeTabla">
+                    <thead class="encabezadoDeTabla">
+                        <tr class="text-center">
+                            <th class="col-3">ID</th>
+                            <th class="col-3">User</th>
+                            <th class="col-6"></th>
+                        </tr>
+                    </thead>
+
+                    {{#each carts}}  
+                        <tr class="text-center align-middle">
+                            <td>
+                                {{this.idCart}}
+                            </td>
+                            <td>
+                                {{this.user}}
+                            </td>
+                            
+                            <td>
+                            {{#if this.cartStatus}}
+                                <div class="row justify-content-center">
+                                    <form class="m-1 col-4" action="/api/cart/list" method="post">
+                                        <input type="hidden" name="idCart" value={{this.idCart}}>
+                                        <button type="submit" class="btn btn-warning my-2">Ver carrito</button>
+                                    </form>
+                                    <form class="m-1 col-4" action="/api/cart/delete" method="post">
+                                        <input type="hidden" name="idCart" value={{this.idCart}}>
+                                        <button type="submit" class="btn btn-warning my-2">Eliminar</button>
+                                    </form>
+
+                                </div>
+                            {{else}}
+                                <div class="row justify-content-center">
+                                    <form class="m-1 col-4">
+                                        <button type="submit" class="btn btn-secondary my-2 disabled">Cerrado</button>
+                                    </form>
+                                </div>
+                            </td>
+                            {{/if}}
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">No se encontraron carritos</h4>
+            </div>
+        {{/if}}
+    </div>

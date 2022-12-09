@@ -1,0 +1,66 @@
+[2022-12-08T11:42:27.042] [WARN] warnArchive - Ruta GET /productos no implementada
+[2022-12-08T11:42:37.320] [WARN] warnArchive - Ruta GET /productos no implementada
+[2022-12-08T11:42:40.007] [WARN] warnArchive - Ruta GET /productos no implementada
+[2022-12-08T11:42:47.681] [WARN] warnArchive - Ruta GET /productos/login no implementada
+[2022-12-08T11:46:09.742] [WARN] warnArchive - Ruta GET /auth/login no implementada
+[2022-12-08T11:52:04.108] [WARN] warnArchive - Ruta GET /auth/login no implementada
+[2022-12-08T11:54:15.769] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-08T11:54:22.748] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-08T11:54:26.114] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:33:18.447] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:33:28.720] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:34:41.212] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:30.886] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:33.359] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:40.239] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:48.536] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:50.298] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:36:58.296] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:39:07.473] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:39:09.807] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:39:40.048] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:40:09.470] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:40:13.850] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T12:40:44.516] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:36:19.414] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:36:28.206] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:36:38.659] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:36:40.291] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:36:47.789] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:38:00.473] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:38:36.668] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:39:13.256] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:39:48.053] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:41:04.215] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:41:37.881] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:42:03.255] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:42:31.463] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:43:15.853] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:43:46.449] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:44:02.835] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:45:26.845] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:47:49.951] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:02.998] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:10.145] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:17.596] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:22.419] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:41.927] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:48:49.528] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:49:02.261] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:49:30.566] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:49:49.838] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:49:54.409] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:49:55.500] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:50:03.553] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:53:34.026] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:53:57.041] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:54:18.328] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:54:24.067] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:54:47.932] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:54:53.175] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:54:54.828] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T14:55:06.053] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T15:04:24.461] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T15:04:45.189] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T15:04:59.882] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-09T15:05:51.586] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET

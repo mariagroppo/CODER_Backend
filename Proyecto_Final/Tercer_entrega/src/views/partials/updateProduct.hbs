@@ -1,0 +1,52 @@
+{{#if adminLicence}}
+    <div class="container-fluid tipografia">
+            
+            
+
+            <div class="col">
+                <div class="col border border-dark mx-1 filaDeTabla">
+                    <h4 class="my-2 fw-bold text-center">Ingrese información a actualizar</h4>
+                    <span class="mx-3">Ingrese el/los campo/s a actualizar.</span>
+                    <form class="m-2" action="/api/productos/update" method="post">
+                        <div class="mx-3">
+                            <label for="id" class="form-label">ID</label>
+                            <input type="number" class="form-control" name="id" id="id" value={{this.id}}>
+                        </div>
+                        <div class="container-fluid encabezadoDeTabla mt-3 p-2">
+                            <div class="m-2">
+                                <label for="title" class="form-label">Nombre del producto</label>
+                                <input type="text" class="form-control" name="newTitle" id="newTitle">
+                            </div>
+                            <div class="m-2">
+                                <label for="title" class="form-label">Descripción</label>
+                                <input type="text" class="form-control" name="newDescription" id="newDescription">
+                            </div>
+                            <div class="m-2">
+                                <label for="title" class="form-label">Código</label>
+                                <input type="text" class="form-control" name="newCode" id="newCode">
+                            </div>
+                            <div class="m-2">
+                                <label for="ruta" class="form-label">URL Imagen</label>
+                                <input type="text" class="form-control" name="newThumbnail" id="newThumbnail">
+                            </div>
+                            <div class="m-2">
+                                <label for="price" class="form-label">Precio</label>
+                                <input type="number" class="form-control" name="newPrice" id="newPrice">
+                            </div>
+                            <div class="m-2">
+                                <label for="price" class="form-label">Stock</label>
+                                <input type="number" class="form-control" name="newStock" id="newStock">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning my-2">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        
+    </div>
+
+{{else}}
+    <div class="container-fluid">
+        <h4 class="alert alert-danger">Sección no autorizada.</h4>
+    </div>
+{{/if}}

@@ -1,0 +1,112 @@
+<main>
+
+    {{#if userStatus}}
+    <div>
+        <div class="row align-items-center">
+            <div class="col-6">
+                <div class="row">
+                    <h4 class="p-3 fw-bold tipografia col-6">Lista de productos</h4>
+                    {{#if adminLicence}}
+                    <form class="m-1 col" action="/api/productos/edicionProductos" method="get">
+                        <button type="submit" class="btn btn-light my-2">Nuevo producto</button>
+                    </form>
+                    {{/if}}
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <select class="form-select container col-2" aria-label="Default select example" id="filterOption">
+                    <option selected>Filtros...</option>
+                    <option value="1">ID</option>
+                    <option value="2">Menor precio</option>
+                    <option value="3">Mayor precio</option>
+                </select>
+            </div>
+        </div>
+        
+
+        {{#if productsExists}}
+            <div class="container-fluid tipografia">
+                <table class="table filaDeTabla">
+                    <thead class="encabezadoDeTabla">
+                        <tr class="text-center">
+                            <th class="col">ID</th>
+                            <th class="col">Nombre del producto</th>
+                            <th class="col-3">Descripción</th>
+                            <th class="col">Código</th>
+                            <th class="col">Imagen</th>
+                            <th class="col">Precio</th>
+                            <th class="col">Stock</th>
+                            <th class="col-2"></th>
+                            
+                        </tr>
+                    </thead>
+
+                    {{#each prods}}  
+                        <tr class="text-center align-middle">
+                            <td>
+                                {{this.id}}
+                            </td>
+                            <td>
+                                {{this.title}}
+                            </td>
+                            <td>
+                                {{this.description}}
+                            </td>
+                            <td>
+                                {{this.code}}
+                            </td>
+                            <td>
+                                <img class="rounded mx-auto d-block imagenProducto" src={{this.thumbnail}}>
+                            </td>
+                            <td>
+                                <p>$</p>{{this.price}}
+                            </td>
+                            <td>
+                                {{this.stock}}
+                            </td>
+                            <td class="container col-3">
+                                <div class="row row-cols-auto justify-content-center">
+                                    <div class="col">
+                                        <form class="container" action="/api/cart/include" method="post">
+                                            <input type="hidden" name="id" value={{this.id}}>
+                                            <div class="row row-cols-auto align-items-center">
+                                                <label class="col" for="">Carrito N°: </label>
+                                                <input class="col-2" type="number" name="idCart">
+                                                <button type="submit" class="btn btn-secondary m-2 col">Agregar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            {{!-- {{#if adminLicence}} --}}
+                                <div class="row row-cols-auto justify-content-center">
+                                    <div class="col">
+                                        <form action="/api/productos/delete" method="post" >
+                                            <input type="hidden" name="id" value={{this.id}}>
+                                            <button type="submit" class="btn btn-danger my-2">X</button>
+                                        </form>
+                                    </div>
+                                    <div class="col">
+                                        <form action="/api/productos/updateForm" method="post">
+                                            <input type="hidden" name="idEdit" value={{this.id}}>
+                                            <button type="submit" class="btn btn-primary my-2">Editar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {{!-- {{/if}} --}}
+                            </td>        
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">No se encontraron productos</h4>
+            </div>
+        {{/if}}
+    </div>
+    {{else}}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Revista_%C2%A1Hola%21_logo.svg/1200px-Revista_%C2%A1Hola%21_logo.svg.png" alt="">
+    {{/if}}
+
+</main>
