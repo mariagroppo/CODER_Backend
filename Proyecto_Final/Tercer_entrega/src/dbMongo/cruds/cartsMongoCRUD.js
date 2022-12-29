@@ -14,16 +14,19 @@ class CartMongoDB {
     }
 
     createCart = async (user) => {
-        const contenido = await this.getAll();
+        const contenido = await this.getAllCarts();
         let max=0;
         for (let index = 0; index < contenido.length; index++) {
-            if (contenido[index].id > max) {
-                max=contenido[index].id
+            console.log(contenido[index].idCart)
+            if (contenido[index].idCart > max) {
+                max=contenido[index].idCart
+                console.log("MAX: " + max)
             }
         }
         const idCart = max + 1;
         let products=[];
-        const cart = {idCart, user, products};
+        let cartStatus=true;
+        const cart = {idCart, user, products, cartStatus};
         console.log(cart);
         const newCart = new CartModel(cart);
         try {
@@ -31,7 +34,7 @@ class CartMongoDB {
             await newCart.save();
             console.log(`El carrito ${idCart} fue creado`);
         } catch (error) {
-            console.log(error);
+            console.log("Error createCart Mongo: " + error);
         }
     } 
 

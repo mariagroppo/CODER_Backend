@@ -17,7 +17,7 @@ export const getAllCarts = async (req, res) => {
         if (userName === "admin") {
             adminLicence =true;
         }
-        res.render('../src/views/partials/carts.hbs', {user: userName, adminLicence: adminLicence, userStatus: userState, avatar: avatar});
+        res.render('../src/views/partials/listadoCarts.hbs', {user: userName, adminLicence: adminLicence, userStatus: userState, avatar: avatar});
     } catch (error) {
         console.log("Error en getAllCarts: " + error)    
     }
@@ -50,7 +50,7 @@ export const createNewCart = async (req, res) => {
     try {
         let userName = req.user.userName;
         cartMongo.createCart(userName);
-        res.redirect('/api/cart');
+        res.redirect('/api/cart/listado');
     } catch (error) {
         console.log("Error en createNewCart: " + error);    
     }
@@ -64,7 +64,7 @@ export const deleteCartById = async (req, res) => {
             res.status(400).send({ error: 'El parámetro no es un número.'})    
         } else {
            await cartMongo.deleteById(id, userName);
-           res.redirect('/api/cart');
+           res.redirect('/api/cart/listado');
        }
         
     } catch (error) {

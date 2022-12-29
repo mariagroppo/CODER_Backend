@@ -64,3 +64,7 @@
 [2022-12-09T15:04:45.189] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
 [2022-12-09T15:04:59.882] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
 [2022-12-09T15:05:51.586] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-29T10:12:03.048] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-29T10:12:03.282] [WARN] warnArchive - Estado: 404, Ruta consultada: /favicon.ico, Metodo GET
+[2022-12-29T10:12:25.114] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET
+[2022-12-29T10:15:38.874] [WARN] warnArchive - Estado: 404, Ruta consultada: /public/index.js, Metodo GET

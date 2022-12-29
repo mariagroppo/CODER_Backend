@@ -29,11 +29,11 @@ app.use(session({
 /* ROUTERS ----------------------------------------------------------------------------------- */
 app.use(passport.initialize());
 app.use(passport.session());
-import routerInicial from './src/routes/inicial.js';
+/* import routerInicial from './src/routes/inicial.js'; */
 import router from './src/routes/products.js';
 import routerCart from './src/routes/cart.js';
 import routerAuth from "./src/routes/routerAuth.js";
-app.use('/api', routerInicial);
+/* app.use('/api', routerInicial); */
 app.use('/api/productos', router);
 app.use('/api/cart', routerCart);
 app.use('/api/auth', routerAuth);
